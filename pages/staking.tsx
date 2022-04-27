@@ -16,15 +16,13 @@ const Staking = () => {
   const connectedWallet = useConnectedWallet();
   const lcd = useLCDClient();
   const [validator, setValidator] = useState<Validator[] | null>(null);
-  let validators;
   const setValidators = lcd.staking.validators().then((v) => {
     setValidator(v[0]);
   });
-  console.log(validator);
   return (
     <div>
       staking
-      {validator?.map((v) => (
+      {validator?.map((v, key) => (
         <div>
           {" "}
           <ValidatorManager v={v} />{" "}

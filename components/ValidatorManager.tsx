@@ -13,11 +13,12 @@ import {
 
 const ValidatorManager = (props: { v: Validator }) => {
   const connectedWallet = useConnectedWallet();
-  const c = new Coin("uluna", 131029);
-
-  const stake = useCallback(() => {
+  const c = new Coin("uluna", 1000000);
+  const [wallet, setWallet] = useState("");
+  const stake = () => {
+    setWallet(connectedWallet?.terraAddress);
     const delegate = new MsgDelegate(
-      connectedWallet?.walletAddress,
+      connectedWallet?.terraAddress,
       props.v.operator_address,
       c
     );
@@ -32,13 +33,13 @@ const ValidatorManager = (props: { v: Validator }) => {
       .catch((error: unknown) => {
         alert(error);
       });
-  }, [connectedWallet]);
+  };
 
   return (
     <div>
       Validator Operator Address :{props.v.operator_address}{" "}
       {props.v.jailed ? "JAILED" : "NOT JAILED"}
-      <button onClick={stake}>Stake</button>
+      <button onClick={stake}>Stake 1 Luna</button>
     </div>
   );
 };

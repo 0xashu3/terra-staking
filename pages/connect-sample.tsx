@@ -1,5 +1,5 @@
-import { useWallet, WalletStatus } from '@terra-money/wallet-provider';
-import React from 'react';
+import { useWallet, WalletStatus } from "@terra-money/wallet-provider";
+import React from "react";
 
 export default function ConnectSample() {
   const {
@@ -14,6 +14,8 @@ export default function ConnectSample() {
     install,
     disconnect,
   } = useWallet();
+
+  console.log(network);
 
   return (
     <div>
@@ -30,7 +32,7 @@ export default function ConnectSample() {
               availableInstallTypes,
             },
             null,
-            2,
+            2
           )}
         </pre>
       </section>
@@ -40,7 +42,7 @@ export default function ConnectSample() {
           <>
             {availableInstallTypes.map((connectType) => (
               <button
-                key={'install-' + connectType}
+                key={"install-" + connectType}
                 onClick={() => install(connectType)}
               >
                 Install {connectType}
@@ -48,7 +50,7 @@ export default function ConnectSample() {
             ))}
             {availableConnectTypes.map((connectType) => (
               <button
-                key={'connect-' + connectType}
+                key={"connect-" + connectType}
                 onClick={() => connect(connectType)}
               >
                 Connect {connectType}
@@ -56,19 +58,19 @@ export default function ConnectSample() {
             ))}
             <br />
             {availableConnections.map(
-              ({ type, name, icon, identifier = '' }) => (
+              ({ type, name, icon, identifier = "" }) => (
                 <button
-                  key={'connection-' + type + identifier}
+                  key={"connection-" + type + identifier}
                   onClick={() => connect(type, identifier)}
                 >
                   <img
                     src={icon}
                     alt={name}
-                    style={{ width: '1em', height: '1em' }}
+                    style={{ width: "1em", height: "1em" }}
                   />
                   {name} [{identifier}]
                 </button>
-              ),
+              )
             )}
           </>
         )}
